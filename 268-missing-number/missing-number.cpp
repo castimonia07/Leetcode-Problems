@@ -14,19 +14,31 @@ public:
         // }
         // return -1;
 
+        // int n=nums.size();
+        // int sum=(n*(n+1))/2;
+        // int sum2=0;
+        // for(int i=0;i<n;i++){
+        //     sum2+=nums[i];
+        // }
+        // if(sum!=sum2){
+        //     return sum-sum2;
+        // }
+        // if(nums[0]!=0){
+        //     return 0;
+        // }
+        // return -1;
+
+
         int n=nums.size();
-        int sum=(n*(n+1))/2;
-        int sum2=0;
+        int x=0;
+        for(int i=0;i<=n;i++){
+            x=x^i;
+        }
+        int y=0;
         for(int i=0;i<n;i++){
-            sum2+=nums[i];
+            y=y^nums[i];
         }
-        if(sum!=sum2){
-            return sum-sum2;
-        }
-        if(nums[0]!=0){
-            return 0;
-        }
-        return -1;
+        return x^y;
 
     }
 };
