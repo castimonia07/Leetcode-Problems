@@ -16,9 +16,14 @@ public:
         }
         string result="";
         int max_count=0;
-        for(auto pair: word_freq){
-            const string word=pair.first;
-            int count=pair.second;
+        // for(auto pair: word_freq){
+        //     const string word=pair.first;
+        //     int count=pair.second;
+        //     if(count>max_count){
+        //         max_count=count;
+        //         result=word;
+        //     }
+        for(auto& [word,count]:word_freq){
             if(count>max_count){
                 max_count=count;
                 result=word;
