@@ -5,7 +5,7 @@ public:
         for(int num:nums){
             m[num]++;
         }
-        for(auto& pair:m){
+        for(auto pair:m){
             if(pair.second==1){
                 return pair.first;
             }
