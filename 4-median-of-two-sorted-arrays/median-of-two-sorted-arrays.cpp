@@ -14,17 +14,5 @@ public:
             m=nums1[(n)/2.0];
         }
         return m;
-
-        // int n=nums1.size();
-        // int m=nums2.size();
-        // double sum=0.0;
-        // for(int i=0;i<n;i++){
-        //     sum+=nums1[i];
-        // }
-        // for(int j=0;j<m;j++){
-        //     sum+=nums2[j];
-        // }
-        // double k=sum/(m+n);
-        // return k;
     }
 };
