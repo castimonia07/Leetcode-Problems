@@ -4,23 +4,30 @@ public:
         if(ransomNote.size()>magazine.size()){
             return false;
         }
-        unordered_map<char,int> rn;
-        for(char c:ransomNote){
-            rn[c]++;
-        }
         unordered_map<char,int> mag;
-        for(char c: magazine){
+        for(char c:magazine){
             mag[c]++;
         }
-        for(auto it:rn){
-            char ch=it.first;
-            int req=it.second;
-            if(mag[ch]<req){
+        // unordered_map<char,int> mag;
+        // for(char c: magazine){
+        //     mag[c]++;
+        // }
+        // for(auto it:rn){
+        //     char ch=it.first;
+        //     int req=it.second;
+        //     if(mag[ch]<req){
+        //         return false;
+        //     }
+        // }
+        // return true;
+        for(char ch:ransomNote){
+            if(mag[ch]>0){
+                mag[ch]--;
+            }
+            else{
                 return false;
             }
         }
         return true;
-
-
     }
 };
