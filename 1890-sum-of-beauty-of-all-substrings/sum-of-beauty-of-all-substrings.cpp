@@ -1,36 +1,35 @@
 class Solution {
 public:
     int beautySum(string s) {
-        int totalBeauty = 0;
-
-        for (int i = 0; i < s.size(); i++) {
-            unordered_map<char, int> freqMap;  // Stores character frequencies
-            vector<int> freqBucket(s.size() + 1, 0); // Frequency tracking
-            int maxFreq = 0;
-            
-            for (int j = i; j < s.size(); j++) {
-                char ch = s[j];
-                int prevFreq = freqMap[ch];
-                int newFreq = ++freqMap[ch];  // Update frequency
-                
-                // Update frequency bucket
-                if (prevFreq > 0) freqBucket[prevFreq]--; // Remove old frequency
-                freqBucket[newFreq]++;  // Add new frequency
-                
-                maxFreq = max(maxFreq, newFreq);  // Update max frequency
-                
-                // Find minFreq (smallest non-zero frequency)
-                int minFreq = INT_MAX;
-                for (int k = 1; k <= maxFreq; k++) {
-                    if (freqBucket[k] > 0) {
-                        minFreq = k;
-                        break;
-                    }
+        int sum=0;
+        // for(int i=0;i<s.size();i++){
+        //     for(int j=i+1;j<s.size();j++){
+        //         string str=s.substr(i,j-i+1);
+        //         unordered_map<char,int> mp;
+        //         for(char c:str){
+        //             mp[c]++;
+        //         }
+        //         int max_ele=INT_MIN;
+        //         int min_ele=INT_MAX;
+        //         for(auto it:mp){
+        //             max_ele=max(max_ele,it.second);
+        //             min_ele=min(min_ele,it.second);
+        //         }
+        //         sum+=max_ele-min_ele;
+        //     }
+        // }
+        for(int i=0;i<s.size();i++){
+            unordered_map<char,int> mp;
+            for(int j=i;j<s.size();j++){
+                mp[s[j]]++;
+                int m=0,n=INT_MAX;
+                for(auto it:mp){
+                    m=max(m,it.second);
+                    n=min(n,it.second);
                 }
-                
-                totalBeauty += (maxFreq - minFreq); // Add beauty for this substring
+                sum+=(m-n);
             }
         }
-        return totalBeauty;
+        return sum;
     }
 };
