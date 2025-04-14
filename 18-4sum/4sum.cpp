@@ -32,15 +32,13 @@ public:
                         vector<int> temp={nums[i],nums[j],nums[k],nums[l]};
                         sort(temp.begin(),temp.end());
                         st.insert(temp);
-                    }
-                    if(sum==target){
                         k++;
                         l--;
                     }
-                    if(sum<target){
+                    else if(sum<target){
                         k++;
                     }
-                    if(sum>target){
+                    else{
                         l--;
                     }
                 }
