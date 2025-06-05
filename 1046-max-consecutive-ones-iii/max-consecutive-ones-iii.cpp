@@ -19,22 +19,37 @@ public:
         // }
         // return maxlen;
 
-        int maxlen=0,left=0,right=0,zeroes=0;
-        while(right<nums.size()){
-            if(nums[right] == 0){
-                ++zeroes;
-            }
-            while(zeroes>k){
-                if(nums[left]==0){
-                    --zeroes;
+        // int maxlen=0,left=0,right=0,zeroes=0;
+        // while(right<nums.size()){
+        //     if(nums[right] == 0){
+        //         ++zeroes;
+        //     }
+        //     while(zeroes>k){
+        //         if(nums[left]==0){
+        //             --zeroes;
+        //         }
+        //         ++left;;
+        //     }
+        //     if(zeroes<=k){
+        //         int len=right-left+1;
+        //         maxlen=max(maxlen,len);
+        //     }
+        //     ++right;
+        // }
+        // return maxlen;
+        int maxlen=0,l=0,r=0,z=0;
+        while(r<nums.size()){
+            if(nums[r]==0) ++z;
+            if(z>k){
+                if(nums[l]==0){
+                    --z;
                 }
-                ++left;;
+                ++l;
             }
-            if(zeroes<=k){
-                int len=right-left+1;
-                maxlen=max(maxlen,len);
+            if(z<=k){
+                 maxlen=max(maxlen,r-l+1);
             }
-            ++right;
+            ++r;
         }
         return maxlen;
     }
