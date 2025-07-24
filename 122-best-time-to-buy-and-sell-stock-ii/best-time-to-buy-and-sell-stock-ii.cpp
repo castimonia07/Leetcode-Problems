@@ -7,17 +7,19 @@ public:
             if(prices[i+1]>prices[i]){
                 sum+=(prices[i+1]-prices[i]);
             }
-            else continue;
+            // else continue;
         }
-        int maxpro=sum;
-        for(int i=0;i<n;i++){
-            for(int j=i+1;j<n;j++){
-                if(prices[j]>prices[i]){
-                    maxpro=max(maxpro,prices[j]-prices[i]);
-                }
-                else continue;
-            }
-        }
-        return maxpro;
+        // int maxpro=sum;
+        // for(int i=0;i<n;i++){
+        //     for(int j=i+1;j<n;j++){
+        //         if(prices[j]>prices[i]){
+        //             maxpro=max(maxpro,prices[j]-prices[i]);
+        //         }
+        //         else continue;
+        //     }
+        // }
+        // return maxpro;
+
+        return sum;
     }
 };
