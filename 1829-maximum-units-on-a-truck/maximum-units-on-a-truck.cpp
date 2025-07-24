@@ -7,12 +7,17 @@ public:
             return a[1]>b[1];
         });
         int totalunits=0;
-        for(auto& box: boxTypes){
-            int count=min(box[0],truckSize);
-            totalunits+=count*box[1];
-            truckSize-=count;
+        // for(auto& box: boxTypes){
+        //     int count=min(box[0],truckSize);
+        //     totalunits+=count*box[1];
+        //     truckSize-=count;
 
-            if(truckSize==0) break;
+        //     if(truckSize==0) break;
+        // }
+        for(int i=0;i<boxTypes.size();i++){
+            int cnt=min(boxTypes[i][0],truckSize);
+            totalunits+=cnt*boxTypes[i][1];
+            truckSize-=cnt;
         }
         return totalunits;
     }
