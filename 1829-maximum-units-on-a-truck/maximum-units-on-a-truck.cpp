@@ -14,10 +14,12 @@ public:
 
         //     if(truckSize==0) break;
         // }
+        int cnt=0;
         for(int i=0;i<boxTypes.size();i++){
             int cnt=min(boxTypes[i][0],truckSize);
             totalunits+=cnt*boxTypes[i][1];
             truckSize-=cnt;
+
         }
         return totalunits;
     }
