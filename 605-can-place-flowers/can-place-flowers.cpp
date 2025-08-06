@@ -15,28 +15,31 @@ public:
         // }
         // return (cnt >= n);
 
-        if(n==0) return true;
-        if(fb.size()==1 && fb[0]==0){
-            if(n<=1){
-                return true;
-            }
-            else return false;
+        int size = fb.size();
+        if (n == 0) return true;
+        if (size == 1) {
+            return fb[0] == 0 && n <= 1;
         }
-        int cnt=0;
-        if(fb[0]==0 && fb[1]==0){
+        int cnt = 0;
+        // Check the first plot
+        if (fb[0] == 0 && fb[1] == 0) {
+            fb[0] = 1;
             cnt++;
-            fb[0]=1;
+            if (cnt >= n) return true;
         }
-        for(int i=1;i<fb.size()-1;i++){
-            if(fb[i-1]==0&&fb[i]==0&&fb[i+1]==0){
+        // Check middle plots
+        for (int i = 1; i < size - 1; i++) {
+            if (fb[i] == 0 && fb[i - 1] == 0 && fb[i + 1] == 0) {
+                fb[i] = 1;
                 cnt++;
-                fb[i]=1;
+                if (cnt >= n) return true;
             }
         }
-        int m=fb.size();
-        if(fb[m-1]==0&&fb[m-2]==0){
+        // Check the last plot
+        if (fb[size - 1] == 0 && fb[size - 2] == 0) {
             cnt++;
+            if (cnt >= n) return true;
         }
-        return cnt>=n;
+        return cnt >= n;
     }
 };
