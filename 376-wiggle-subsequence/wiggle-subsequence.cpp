@@ -1,34 +1,30 @@
 class Solution {
 public:
     int wiggleMaxLength(vector<int>& nums) {
-        if(nums.size() <= 1) return nums.size();
+        int n = nums.size();
+        if (n == 1) return 1;
 
-        vector<int> v;
-        v.push_back(nums[0]);
         int i = 1;
+        while (i < n && nums[i] == nums[i - 1]) {
+            i++;
+        }
 
-        // Skip initial same elements
-        while(i < nums.size() && nums[i] == nums[i-1]) i++;
+        if (i == n) return 1;
 
-        if(i == nums.size()) return 1; // All elements are the same
+        int val = (nums[i] > nums[i - 1]) ? -1 : 1;
+        int count = 2;  // includes nums[i-1] and nums[i]
 
-        int val = (nums[i] > nums[i-1]) ? -1 : 1; // Next we want opposite sign
+        for (; i < n - 1; i++) {
+            int diff = nums[i + 1] - nums[i];
 
-        v.push_back(nums[i-1]); // push first turning point
+            if (diff == 0) continue;
 
-        for(; i < nums.size(); i++) {
-            if(nums[i] > nums[i-1] && val == -1) {
-                v.push_back(nums[i-1]);
-                val = 1;
-            }
-            else if(nums[i] < nums[i-1] && val == 1) {
-                v.push_back(nums[i-1]);
-                val = -1;
+            if ((diff > 0 && val == 1) || (diff < 0 && val == -1)) {
+                val *= -1;
+                count++;
             }
         }
 
-        // Add last element always as it's part of final wave
-        v.push_back(nums.back());
-        return v.size()-2;
+        return count;
     }
 };
