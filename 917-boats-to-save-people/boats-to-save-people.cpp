@@ -11,7 +11,7 @@ public:
                 l++;
                 r--;
             }
-            else if(people[l]+people[r]>limit){
+            else{
                 cnt++;
                 r--;
             }
