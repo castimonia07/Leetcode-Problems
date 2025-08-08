@@ -1,30 +1,49 @@
 class Solution {
 public:
     int wiggleMaxLength(vector<int>& nums) {
-        int n = nums.size();
-        if (n == 1) return 1;
-
+        if(nums.size() == 1){
+            return 1;
+        }
+        vector<int> v;
+        v.push_back(nums[0]);
+        int val = 0;
         int i = 1;
-        while (i < n && nums[i] == nums[i - 1]) {
+        
+        // Fix: Find the first non-zero difference
+        while(i < nums.size() && nums[i] == nums[i-1]){
             i++;
         }
-
-        if (i == n) return 1;
-
-        int val = (nums[i] > nums[i - 1]) ? -1 : 1;
-        int count = 2;  // includes nums[i-1] and nums[i]
-
-        for (; i < n - 1; i++) {
-            int diff = nums[i + 1] - nums[i];
-
-            if (diff == 0) continue;
-
-            if ((diff > 0 && val == 1) || (diff < 0 && val == -1)) {
-                val *= -1;
-                count++;
-            }
+        if(i == nums.size()){
+            return 1; // all elements are equal
         }
 
-        return count;
+        // set initial val (direction)
+        val = (nums[i] > nums[i-1]) ? -1 : 1;
+        v.push_back(nums[i-1]);
+
+        while(i < nums.size()){
+            if(nums[i-1] - nums[i] > 0 && val == 1){
+                i++;
+                continue;
+            }
+            else if(nums[i-1] - nums[i] < 0 && val == -1){
+                i++;
+                continue;
+            }
+            else if(nums[i-1] - nums[i] == 0){
+                i++;
+                continue;
+            }
+            else if(nums[i-1] - nums[i] > 0 && val == -1){
+                val = 1;
+                v.push_back(nums[i-1]);
+            }
+            else if(nums[i-1] - nums[i] < 0 && val == 1){
+                val = -1;
+                v.push_back(nums[i-1]);
+            }
+            i++;
+        }
+        return v.size() ;
     }
 };
