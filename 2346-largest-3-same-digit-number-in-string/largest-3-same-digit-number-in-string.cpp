@@ -1,21 +1,32 @@
 class Solution {
 public:
     string largestGoodInteger(string num) {
-        // vector<int> v;
-        int maxi=-1;
-        for(int i=0;i<num.size();i++){
-            string str=num.substr(i,3);
-            if(str[0]==str[1]&&str[1]==str[2]){
-                maxi=max(maxi,stoi(str));
+        vector<int> v;
+        int prev=INT_MIN;
+        for(int i=0;i<=num.size()-3;i++){
+            string str="";
+            int a=num[i]-0;
+            for(int j=i;j<i+3;j++){
+                if(num[j]-0==a){
+                    str+=num[j];
+                }
+                else break;
+            }
+            if(str.size()==3){
+                v.push_back(stoi(str));
+            }
+            else{
+                continue;
             }
         }
-        if(maxi==-1){
-            return "";
+        string str2="";
+        sort(v.begin(),v.end(),greater<int>());
+        if(!v.empty()){
+            str2+=to_string(v[0]);
         }
-        else if(maxi==0){
+        if(str2=="0"){
             return "000";
         }
-        string str2=to_string(maxi);
         return str2;
     }
 };
