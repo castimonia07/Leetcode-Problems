@@ -10,9 +10,7 @@ public:
             if(prev>intervals[i][0]){
                 cnt++;
             }
-            else{
-                prev=intervals[i][1];
-            }
+            else {prev=intervals[i][1];}
         }
         return cnt;
     }
