@@ -10,7 +10,10 @@ public:
             long long hour=0;
 
             for(int pile:piles){
-                hour+=(pile+mid-1)/mid;
+                if(pile%mid==0){
+                    hour+=pile/mid;
+                }
+                else hour+=(pile/mid)+1;
             }
             if(hour<=h){
                 result=mid;
