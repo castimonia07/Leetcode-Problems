@@ -25,8 +25,8 @@ public:
         while(low<=high){
             int mid=(low+high)/2;
             long long sum=0;
-            for(int num:nums){
-                sum+=(num+mid-1)/mid;
+            for(double num:nums){
+                sum+=ceil((num)/mid);
             }
             if(sum<=threshold){
                 result= mid;
