@@ -7,8 +7,8 @@ public:
         long long n=0;
         while(y!=0){
             last=y%10;
-            if(n<INT_MIN || (n==INT_MIN/10 && last<-8)) return false;
-            if(n>INT_MAX || (n==INT_MAX/10 && last>7)) return false;
+            if(n<INT_MIN/10) return false;
+            if(n>INT_MAX/10) return false;
             n=n*10+(last);
             y/=10;
         }
