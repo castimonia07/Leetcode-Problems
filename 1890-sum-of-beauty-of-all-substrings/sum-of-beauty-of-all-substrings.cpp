@@ -1,33 +1,33 @@
 class Solution {
 public:
+    // int check(string s){
+    //     unordered_map<char,int> mpp;
+    //     for(char c:s){
+    //         mpp[c]++;
+    //     }
+    //     int mini=INT_MAX;
+    //     int maxi=INT_MIN;
+    //     for(auto it:mpp){
+    //         mini=min(mini,it.second);
+    //         maxi=max(maxi,it.second);
+    //     }
+    //     return (maxi-mini);
+    // }
+    int sum=0;
     int beautySum(string s) {
-        int sum=0;
-        // for(int i=0;i<s.size();i++){
-        //     for(int j=i+1;j<s.size();j++){
-        //         string str=s.substr(i,j-i+1);
-        //         unordered_map<char,int> mp;
-        //         for(char c:str){
-        //             mp[c]++;
-        //         }
-        //         int max_ele=INT_MIN;
-        //         int min_ele=INT_MAX;
-        //         for(auto it:mp){
-        //             max_ele=max(max_ele,it.second);
-        //             min_ele=min(min_ele,it.second);
-        //         }
-        //         sum+=max_ele-min_ele;
-        //     }
-        // }
         for(int i=0;i<s.size();i++){
-            unordered_map<char,int> mp;
+            unordered_map<char,int> mpp;
             for(int j=i;j<s.size();j++){
-                mp[s[j]]++;
-                int m=0,n=INT_MAX;
-                for(auto it:mp){
-                    m=max(m,it.second);
-                    n=min(n,it.second);
+                mpp[s[j]]++;
+                int mini=INT_MAX;
+                int maxi=INT_MIN;
+
+                for(auto it:mpp){
+                    mini=min(mini,it.second);
+                    maxi=max(maxi,it.second);
                 }
-                sum+=(m-n);
+                int check=(maxi-mini);
+                sum+=check;
             }
         }
         return sum;
