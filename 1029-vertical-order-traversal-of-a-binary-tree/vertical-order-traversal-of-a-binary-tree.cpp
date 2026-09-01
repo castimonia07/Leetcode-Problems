@@ -28,19 +28,18 @@ public:
             int row = q.front().second.second;
 
             q.pop();
-
             if (node->left != NULL)
                 q.push({node->left, {col - 1, row + 1}});
             if (node->right != NULL)
                 q.push({node->right, {col + 1, row + 1}});
-            
-            mpp[col].push_back({row,node->val});
+
+            mpp[col].push_back({row, node->val});
         }
         for (auto it : mpp) {
-            sort(it.second.begin(),it.second.end());
+            sort(it.second.begin(), it.second.end());
 
             vector<int> temp;
-            for(auto p:it.second){
+            for (auto p : it.second) {
                 temp.push_back(p.second);
             }
             ans.push_back(temp);
