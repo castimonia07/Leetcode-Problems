@@ -16,10 +16,10 @@ public:
         int lh=height(root->left,maxi);
         int rh=height(root->right,maxi);
         maxi=max(maxi,lh+rh);
-        return 1+max(lh,rh);
-        
+        return 1+max(rh,lh);
     }
     int diameterOfBinaryTree(TreeNode* root) {
+        if(root==NULL) return 0;
         int maxi=0;
         height(root,maxi);
         return maxi;
