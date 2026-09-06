@@ -1,25 +1,28 @@
 class Solution {
 public:
-    int func(vector<int>& nums,int ind,vector<int> &dp){
-        if(ind==0) return nums[ind];
-        if(ind<0) return 0;
-        if (dp[ind] != -1) return dp[ind];
+    int func(vector<int> &arr,int i,vector<int> &dp){
+        if(i==0) return arr[i];
+        if(i==1) return max(arr[0],arr[1]);
 
-        int take=nums[ind]+func(nums,ind-2,dp);
-        int notake=0+func(nums,ind-1,dp);
-        return dp[ind]=max(take,notake);
+        if(dp[i]!=-1) return dp[i];
+        int not_take=func(arr,i-1,dp);
+        int take=INT_MIN;
+        if(i>1) take=arr[i]+func(arr,i-2,dp);
+        return dp[i]=max(take,not_take);
     }
     int rob(vector<int>& nums) {
         int n=nums.size();
         if(n==1) return nums[0];
-        vector<int> v1(nums.begin()+1,nums.end());
-        vector<int> dp1(v1.size(),-1);
-        int case1=func(v1,v1.size()-1,dp1);
+        vector<int> dp1(n-1,-1),dp2(n-1,-1);
+        vector<int> arr1;
+        for(int i=0;i<n-1;i++){
+            arr1.push_back(nums[i]);
+        }
+        vector<int> arr2;
+        for(int i=1;i<n;i++){
+            arr2.push_back(nums[i]);
+        }
 
-        vector<int> v2(nums.begin(),nums.end()-1);
-        vector<int> dp2(v2.size(),-1);
-        int case2=func(v2,v2.size()-1,dp2);
-        return max(case1,case2);
-        
+        return max(func(arr1,n-2,dp1),func(arr2,n-2,dp2));
     }
 };
