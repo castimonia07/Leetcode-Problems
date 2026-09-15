@@ -1,13 +1,17 @@
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
-        int sum=0;
-        // int i=0;
-        for(int i=0;i<prices.size()-1;i++){
-            if(prices[i+1]>prices[i]){
-                sum+=prices[i+1]-prices[i];
-            }
+    int func(vector<int> &prices,int i,bool buy,vector<vector<int>> &dp){
+        if(i==prices.size()) return 0;
+        if(dp[i][buy]!=-1) return dp[i][buy];
+        if(buy==1){
+            return dp[i][buy]=max(func(prices,i+1,0,dp)-prices[i],func(prices,i+1,1,dp));
         }
-        return sum;
+        else{
+            return dp[i][buy]=max(prices[i]+func(prices,i+1,1,dp),func(prices,i+1,0,dp));
+        }
+    }
+    int maxProfit(vector<int>& prices) {
+        vector<vector<int>> dp(prices.size(),vector<int>(2,-1));
+        return func(prices,0,true,dp);
     }
 };
